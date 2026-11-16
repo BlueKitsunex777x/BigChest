@@ -7,13 +7,12 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <DebugType>none</DebugType>
     <!-- your Block Story folder, change it or pass /p:GameDir=... -->
-    <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\BlockStory</GameDir>
+    <GameDir Condition="'$(GameDir)' == ''">/home/sapphire/.local/share/Steam/steamapps/common/BlockStory</GameDir>
     <DataDir Condition="Exists('$(GameDir)/BlockStory_Data')">$(GameDir)/BlockStory_Data</DataDir>
     <DataDir Condition="'$(DataDir)' == ''">$(GameDir)/BlockStoryLinux_Data</DataDir>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="Exists('icon.png')">
+    <EmbeddedResource Include="icon.png"><LogicalName>icon.png</LogicalName></EmbeddedResource>
     <Reference Include="BlockStoryCore"><HintPath>$(GameDir)/BepInEx/plugins/BlockStoryCore.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="BepInEx"><HintPath>$(GameDir)/BepInEx/core/BepInEx.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="0Harmony"><HintPath>$(GameDir)/BepInEx/core/0Harmony.dll</HintPath><Private>false</Private></Reference>
