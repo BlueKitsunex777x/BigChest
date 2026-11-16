@@ -8,7 +8,7 @@ using BlockStoryMod;
 using HarmonyLib;
 using UnityEngine;
 
-[BepInPlugin("com.mrc.blockstory.bigchest", "Big Chest", "1.1.0")]
+[BepInPlugin("com.mrc.blockstory.bigchest", "Big Chest", "1.1.1")]
 [BepInDependency(Core.Guid)]
 [BepInDependency("com.mrc.blockstory.quickcraft")]
 public class BigChestPlugin : BaseUnityPlugin
@@ -24,6 +24,8 @@ public class BigChestPlugin : BaseUnityPlugin
 
     private void Awake()
     {
+        if (!BSMKCheck.Passed(this)) return;
+        
         try { new Harmony("com.mrc.blockstory.bigchest").PatchAll(); L.Info("loaded"); }
         catch (Exception e) { L.Err("PatchAll", e); }
 
